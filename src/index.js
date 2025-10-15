@@ -10,27 +10,28 @@ const radio = "Check in";
 async function fillForm() {
   // Update date
   const date = moment().tz("Asia/Singapore").format("DD/MM/YYYY");
-  console.log(date)
 
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto(url);
 
   // Fill text input
   await page.waitForSelector("input[aria-label='Single line text']");
   await page.type("input[aria-label='Single line text']", name);
+  console.log("Name: " + name);
 
   // Click radio button
   await page.click(`input[type='radio'][value='${radio}']`);
+  console.log("Radio: " + radio);
 
   // Fill date
   await page.type("input[aria-label='Date picker']", date);
+  console.log("Date: " + date);
 
   // Click submit
   await page.click("button[data-automation-id='submitButton']");
-  console.log(`Form submitted for ${date}`);
+  console.log(`Form submitted`);
 
-  await new Promise(resolve => setTimeout(resolve, 3000));
   await browser.close();
 }
 
