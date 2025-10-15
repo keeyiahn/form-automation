@@ -1,4 +1,3 @@
-require('dotenv').config();
 const puppeteer = require('puppeteer');
 const cron = require('node-cron');
 const moment = require('moment-timezone');
