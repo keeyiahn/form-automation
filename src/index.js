@@ -4,7 +4,6 @@ const moment = require('moment-timezone');
 const url = process.env.URL;
 const name = process.env.NAME;
 const radio = "Check in";
-const date = moment().tz("Asia/Singapore").format("DD/MM/YYYY");
 
 async function fillForm() {
   const browser = await puppeteer.launch({
