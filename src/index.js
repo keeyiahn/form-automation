@@ -4,15 +4,19 @@ const moment = require('moment-timezone');
 const url = process.env.URL;
 const name = process.env.NAME;
 const radio = "Check in";
-
+const date = moment().tz("Asia/Singapore").format("DD/MM/YYYY");
 
 async function fillForm() {
-  // Update date
-  const date = moment().tz("Asia/Singapore").format("DD/MM/YYYY");
-
   const browser = await puppeteer.launch({
     headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"]
+    args: [
+      "--no-sandbox", 
+      "--disable-setuid-sandbox",
+      "--lang=en-US"
+    ],
+    env: {
+      TZ: "America/New_York"
+    }
   });
   
   const page = await browser.newPage();
@@ -27,16 +31,15 @@ async function fillForm() {
   await page.click(`input[type='radio'][value='${radio}']`);
   console.log("Radio: " + radio);
 
-  await page.evaluate((date) => {
-    const el = document.querySelector("input[aria-label='Date picker']");
-    el.value = date;  // sets the value directly
-    el.dispatchEvent(new Event('input', { bubbles: true })); // trigger change
-  }, date);  
+  // Fill date input
+  await page.type("input[aria-label='Date picker']", date);
+  console.log("Date: " + date);
 
   // Click submit
   await page.click("button[data-automation-id='submitButton']");
   console.log(`Form submitted`);
 
+  // await new Promise(resolve => setTimeout(resolve, 3000)); // wait for 3 seconds
   await browser.close();
 }
 
