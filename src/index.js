@@ -1,15 +1,14 @@
 const puppeteer = require('puppeteer');
-const cron = require('node-cron');
 const moment = require('moment-timezone');
 
 const url = process.env.URL;
 const name = process.env.NAME;
 const radio = "Check in";
-console.log(url, name, radio);
+
 
 async function fillForm() {
   // Update date
-  const date = moment().tz("Asia/Singapore").format("MM/DD/YYYY");
+  const date = moment().tz("Asia/Singapore").format("DD/MM/YYYY");
 
   const browser = await puppeteer.launch({
     headless: true,
@@ -28,9 +27,11 @@ async function fillForm() {
   await page.click(`input[type='radio'][value='${radio}']`);
   console.log("Radio: " + radio);
 
-  // Fill date
-  await page.type("input[aria-label='Date picker']", date);
-  console.log("Date: " + date);
+  await page.evaluate((date) => {
+    const el = document.querySelector("input[aria-label='Date picker']");
+    el.value = date;  // sets the value directly
+    el.dispatchEvent(new Event('input', { bubbles: true })); // trigger change
+  }, date);  
 
   // Click submit
   await page.click("button[data-automation-id='submitButton']");
