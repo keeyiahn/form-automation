@@ -4,7 +4,7 @@ const cron = require('node-cron');
 const moment = require('moment-timezone');
 
 const url = process.env.URL;
-const name = "test";
+const name = process.env.NAME;
 const radio = "Check in";
 
 async function fillForm() {
