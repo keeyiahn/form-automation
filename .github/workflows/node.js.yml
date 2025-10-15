@@ -33,5 +33,5 @@ jobs:
       env:
         NAME: ${{ secrets.NAME }}
         URL: ${{ secrets.URL }}
-      run: node src/test.js
+      run: node src/index.js
 
