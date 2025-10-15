@@ -9,7 +9,7 @@ console.log(url, name, radio);
 
 async function fillForm() {
   // Update date
-  const date = moment().tz("Asia/Singapore").format("DD/MM/YYYY");
+  const date = moment().tz("Asia/Singapore").format("MM/DD/YYYY");
 
   const browser = await puppeteer.launch({
     headless: true,
