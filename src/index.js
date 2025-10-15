@@ -6,6 +6,7 @@ const moment = require('moment-timezone');
 const url = process.env.URL;
 const name = process.env.NAME;
 const radio = "Check in";
+print(url, name, radio)
 
 async function fillForm() {
   // Update date
