@@ -8,7 +8,7 @@ const date = moment().tz("Asia/Singapore").format("DD/MM/YYYY");
 
 async function fillForm() {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: [
       "--no-sandbox", 
       "--disable-setuid-sandbox",
@@ -31,15 +31,14 @@ async function fillForm() {
   await page.click(`input[type='radio'][value='${radio}']`);
   console.log("Radio: " + radio);
 
-  // Fill date input
-  await page.type("input[aria-label='Date picker']", date);
-  console.log("Date: " + date);
+  const dateInput = await page.$("input[aria-label='Date picker']");
+  const placeholder = await page.evaluate(el => el.placeholder, dateInput);
+  console.log(placeholder);
 
   // Click submit
   await page.click("button[data-automation-id='submitButton']");
   console.log(`Form submitted`);
 
-  await new Promise(resolve => setTimeout(resolve, 3000)); // wait for 3 seconds
   await browser.close();
 }
 
