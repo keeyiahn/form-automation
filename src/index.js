@@ -34,6 +34,7 @@ async function fillForm() {
   // Check date format
   const dateInput = await page.$("input[aria-label='Date picker']");
   const placeholder = await page.evaluate(el => el.placeholder, dateInput);
+  console.log(placeholder);
   
   if (placeholder.includes("dd/MM")) {
     // Singapore-style
