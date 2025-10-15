@@ -32,6 +32,6 @@ jobs:
     - name: Run Puppeteer script
       env:
         NAME: ${{ secrets.NAME }}
-        FORM_URL: ${{ secrets.URL }}
+        URL: ${{ secrets.URL }}
       run: node src/index.js
 
