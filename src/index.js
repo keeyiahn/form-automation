@@ -11,7 +11,11 @@ async function fillForm() {
   // Update date
   const date = moment().tz("Asia/Singapore").format("DD/MM/YYYY");
 
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"]
+  });
+  
   const page = await browser.newPage();
   await page.goto(url);
 
