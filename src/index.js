@@ -35,12 +35,13 @@ async function fillForm() {
   const placeholder = await page.evaluate(el => el.placeholder, dateInput);
   console.log(placeholder);
   
+  let date;
   if (placeholder.includes("dd/MM")) {
     // Singapore-style
-    const date = moment().tz("Asia/Singapore").format("DD/MM/YYYY");
+    date = moment().tz("Asia/Singapore").format("DD/MM/YYYY");
   } else {
     // US-style
-    const date = moment().tz("Asia/Singapore").format("MM/DD/YYYY");
+    date = moment().tz("Asia/Singapore").format("MM/DD/YYYY");
   }
   
   console.log("Date: " + date);
