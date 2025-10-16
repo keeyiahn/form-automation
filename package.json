@@ -11,8 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^17.2.3",
+    "express": "^5.1.0",
     "moment-timezone": "^0.6.0",
     "node-cron": "^4.2.1",
-    "puppeteer": "^24.25.0"
+    "puppeteer": "^24.25.0",
+    "telenode-js": "^1.6.0"
   }
 }
