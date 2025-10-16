@@ -34,6 +34,7 @@ async function main() {
   // Click radio button
   await page.click(`input[type='radio'][value='${radio}']`);
   console.log("Radio: " + radio);
+  await new Promise(resolve => setTimeout(resolve, 200)); 
 
   // Check date format
   const dateInput = await page.$("input[aria-label='Date picker']");
