@@ -32,5 +32,7 @@ jobs:
       env:
         NAME: ${{ secrets.NAME }}
         URL: ${{ secrets.URL }}
+        CHAT_ID: ${{ secrets.CHAT_ID }}
+        API_TOKEN: ${{ secrets.API_TOKEN }}
       run: node src/index.js
 
