@@ -9,7 +9,6 @@ const url = process.env.URL;
 const name = process.env.NAME;
 const radio = "Check in";
 const channel = process.env.CHAT_ID;
-console.log(url, name, radio, channel);
 
 async function main() {
   const browser = await puppeteer.launch({
