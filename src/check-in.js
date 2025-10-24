@@ -64,7 +64,6 @@ async function main() {
   notif = `Submitting check-in form... \nName: ${name} \nRadio: ${radio} \nDate: ${date}`;
 
   await bot.sendTextMessage(notif, channel);
-  await bot.sendTextMessage(url, channel);
 }
 
 main();
